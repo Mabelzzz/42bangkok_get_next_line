@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 01:39:44 by pnamwayk          #+#    #+#             */
-/*   Updated: 2022/10/30 10:44:01 by pnamwayk         ###   ########.fr       */
+/*   Created: 2022/10/30 10:44:40 by pnamwayk          #+#    #+#             */
+/*   Updated: 2022/10/30 10:46:30 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_line(char *tmp)
 {
@@ -102,21 +102,21 @@ t_gnl	read_file(int fd, t_gnl fl)
 
 char	*get_next_line(int fd)
 {
-	static t_gnl	fl;
+	static t_gnl	fl[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1 || fd >= OPEN_MAX)
 		return (NULL);
-	fl.buf = NULL;
-	fl.line = NULL;
-	fl.tmp2 = NULL;
-	fl.byte = 1;
-	if (fl.tmp && check_newline(fl.tmp) != 0)
+	fl[fd].buf = NULL;
+	fl[fd].line = NULL;
+	fl[fd].tmp2 = NULL;
+	fl[fd].byte = 1;
+	if (fl[fd].tmp && check_newline(fl[fd].tmp) != 0)
 	{
-		fl.line = get_line(fl.tmp);
-		fl.tmp = get_temp(fl.tmp);
-		return (fl.line);
+		fl[fd].line = get_line(fl[fd].tmp);
+		fl[fd].tmp = get_temp(fl[fd].tmp);
+		return (fl[fd].line);
 	}
 	else
-		fl = read_file(fd, fl);
-	return (fl.line);
+		fl[fd] = read_file(fd, fl[fd]);
+	return (fl[fd].line);
 }

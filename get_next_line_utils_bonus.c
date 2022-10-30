@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 10:51:14 by pnamwayk          #+#    #+#             */
-/*   Updated: 2022/10/30 10:53:58 by pnamwayk         ###   ########.fr       */
+/*   Created: 2022/10/30 10:57:40 by pnamwayk          #+#    #+#             */
+/*   Updated: 2022/10/30 19:09:51 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	check_newline(char *buf)
 {
